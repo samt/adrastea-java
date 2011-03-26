@@ -1,30 +1,7 @@
 ===============================================================================
 Adrastea IRC Bot 
-Version 2.0.0
+Version 2.0.0 (Java)
 
 Copyright (c) 2011 Sam Thompson <sam@websyntax.net>
 http://www.opensource.org/licenses/mit-license.php The MIT License
 ===============================================================================
-
-About
-
-This IRC bot, written in C, was born out of my desire to achieve a degree of 
-proficiency with the C programing language. Unfortunately, only an IRC bot was 
-created. 
-
-Version 1 was never released to the public and never will be. It is the only 
-time where I have actually been ashamed of code I wrote. Instead, I am 
-open-sourcing version 2 because I am interested in getting more practice in 
-developing software with other languages and other platforms.
-
-===============================================================================
-
-Requirements
-
-This BOT compiles with GCC and requires the GNU libraries to do so. As a 
-result, it is for Linux only right now until I figure out how to make a cross-
-platform program in C.
-
-===============================================================================
-
-More information coming soon.
