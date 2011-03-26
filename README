@@ -5,3 +5,19 @@ Version 2.0.0 (Java)
 Copyright (c) 2011 Sam Thompson <sam@websyntax.net>
 http://www.opensource.org/licenses/mit-license.php The MIT License
 ===============================================================================
+
+About
+
+This bot is a product of my desire to become more competent with C and Java, it
+is not intended as anything more than a pet-project I am doing for my own 
+personal enjoyment. If you find it useful or something, then use it. If you 
+have any ideas or bug reports, please post them in the github tracker or send
+me a pull request.
+
+Originally I wanted to write this in strict C, but I found that Java is quite
+nice for rapid prototyping, and I am finding it easier to create the bot in
+Java. To this extent, I decided to write this bot in both Java and C.
+
+===============================================================================
+
+More details and feature lists to come.
