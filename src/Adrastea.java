@@ -7,4 +7,9 @@
  */
 
 public class Adrastea {
+	/*
+	 * Main
+	 */
+	public static void main(String[] args) {
+	}
 }
