@@ -17,13 +17,20 @@ public class Adrastea {
 		
 		// Connection loop
 		while(true) {
-			irc.connect();
-
 			try {
+				// let us connect
+				irc.connect("irc.freenode.net");
+
 				// Receive message loop
 				while(true)
 				{
 					message = new IrcMessage(irc.recv());
+					System.out.println(message.raw);
+					
+					if (false)
+					{
+						throw new IrcExitException();
+					}
 				}
 			}
 			catch(IrcNullMessageException e) {
@@ -35,6 +42,9 @@ public class Adrastea {
 			catch(IrcExitException e) {
 				System.out.println("System Shutdown...");
 				return;
+			}
+			catch(Exception e) {
+				System.out.println("Unknown Error, reconnecting...");
 			}
 		}
 	}

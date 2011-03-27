@@ -36,13 +36,13 @@ public class IrcConnection {
 	 */
 	public IrcConnection connect(String host, int port) throws IrcFailedConnectException {
 		try {
-			this.sock = new Socket(serv, port);
+			this.sock = new Socket(host, port);
 
 			this.writer = new BufferedWriter(new OutputStreamWriter(this.sock.getOutputStream()));
 			this.reader = new BufferedReader(new InputStreamReader(this.sock.getInputStream()));
 		}
 		catch(Exception e) {
-			throw new IrcFailedConnectException(e.getMessage());
+			throw new IrcFailedConnectException();
 		}
 
 		return this;
@@ -75,7 +75,7 @@ public class IrcConnection {
 	 * @param String - Message/cmd to send
 	 * @return IrcConnection
 	 */
-	public IrcConnection sendRaw(String msg) {
+	public IrcConnection sendRaw(String msg) throws Exception {
 		this.writer.write(msg + "\r\n");
 		this.writer.flush();
 
@@ -92,7 +92,7 @@ public class IrcConnection {
 			return this.reader.readLine();
 		}
 		catch(Exception e) {
-			throw new IrcNullMessageException(e.getMessage());
+			throw new IrcNullMessageException();
 		}
 	}
 
@@ -103,7 +103,7 @@ public class IrcConnection {
 	 * @param String - message (without \r\n)
 	 * @return IrcConnection
 	 */
-	public IrcConnection sendTo(String target, String message) {
+	public IrcConnection sendTo(String target, String message) throws Exception {
 		return this.sendRaw("PRIVMSG " + target + " :" + message);
 	}
 
@@ -114,7 +114,7 @@ public class IrcConnection {
 	 * @param String - message (without \r\n or soroudning \001)
 	 * @return IrcConnection
 	 */
-	public IrcConnection sendCtcp(String target, String message) {
+	public IrcConnection sendCtcp(String target, String message) throws Exception {
 		return this.sendRaw("PRIVMSG " + target + " :\001" + message + '\001');
 	}
 
@@ -126,7 +126,7 @@ public class IrcConnection {
 	 * @param String - message (without \r\n or soroudning \001)
 	 * @return IrcConnection
 	 */
-	public IrcConnection sendCtcp(String target, String query, String message) {
+	public IrcConnection sendCtcp(String target, String query, String message) throws Exception {
 		return this.sendCtcp(target, query + " " + message);
 	}
 }

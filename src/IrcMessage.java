@@ -60,8 +60,8 @@ public class IrcMessage {
 		}
 
 		// Lastly, get any CTCP information
-		if (this.message.startsWith('\001') && this.message.endsWith('\001')) {
-			this.ctcp = this.message.contains(' ') ? this.message.substring(1, this.message.indexOf(' ')) : this.message.substring(1, this.message.lastIndexOf('\001'));
+		if (this.message.startsWith("\001") && this.message.endsWith("\001")) {
+			this.ctcp = this.message.contains(" ") ? this.message.substring(1, this.message.indexOf(' ')) : this.message.substring(1, this.message.lastIndexOf('\001'));
 			this.ctcpArg = (this.message.indexOf(' ') > 0) ? this.message.substring(this.message.indexOf(' ')) : "";
 		}
 	}
