@@ -1,3 +1,5 @@
 *~
 src/*.class
 config.txt
+build/*
+adrastea.jar

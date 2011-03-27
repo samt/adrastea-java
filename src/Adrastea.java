@@ -14,7 +14,7 @@ public class Adrastea {
 		// Declare our IRC environment vars
 		IrcConnection irc = new IrcConnection(); // Connection object
 		IrcMessage message; // Stores the message per tick
-		
+
 		// Load all our config stuffs
 		try {
 			IrcConfig.load("C:\\java\\adrastea\\config.txt");
@@ -36,7 +36,7 @@ public class Adrastea {
 				{
 					message = new IrcMessage(irc.recv());
 					System.out.println(message.raw);
-					
+
 					if (false)
 					{
 						throw new IrcExitException();
