@@ -6,5 +6,7 @@
  * License: http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 
+package adrastea;
+
 public class IrcEvent {
 }

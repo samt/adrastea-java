@@ -6,6 +6,8 @@
  * License: http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 
+package adrastea;
+
 import java.io.*;
 import java.util.Properties;
 

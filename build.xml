@@ -1,17 +1,19 @@
 <project name="Adrastea" default="dist" basedir=".">
-  <property name="src" location="src"/>
-  <property name="build" location="build"/>
+	<target name="init" description="Init">
+		<mkdir dir="build" />
+	</target>
 
-  <target name="init" description="Init">
-	<mkdir dir="${build}" />
-  </target>
+	<target name="compile" depends="init" description="compile the source ">
+		<javac srcdir="src" destdir="build"/>
+	</target>
 
-  <target name="compile" depends="init" description="compile the source ">
-    <javac srcdir="${src}" destdir="${build}"/>
-  </target>
+	<target name="dist" depends="compile" description="generate the distribution">
+		<jar destfile="adrastea.jar" basedir="build">
+			<manifest>
+				<attribute name="Main-Class" value="adrastea.Adrastea"/>
+			</manifest>
+		</jar>
 
-  <target name="dist" depends="compile" description="generate the distribution">
-    <jar jarfile="adrastea.jar" basedir="${build}"/>
-	<delete dir="${build}"/>
-  </target>
+		<delete dir="build"/>
+	</target>
 </project>
