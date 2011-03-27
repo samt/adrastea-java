@@ -20,4 +20,24 @@ Java. To this extent, I decided to write this bot in both Java and C.
 
 ===============================================================================
 
-More details and feature lists to come.
+Installation
+
+*** WARNING ***: This project is NOT finished and may not have full or even 
+basic  functionality.  These instructions are provided for anyone wishes to 
+contribute to a developing project, not to use a functional bot. When this
+project becomes stable, this warning will be removed on the stable, master 
+branch. 
+
+Use Ant to build the project and you should get a file called adrastea.jar in
+the root directory. Move this file and config.sample.txt into a location of 
+your choice. Rename config.sample.txt to config.txt. Ensure both the config and
+the .jar are in the same directory. Edit the config file to your liking, and 
+be sure to change the passphrase to something unique.
+
+Next, Start up the bot with the following command:
+java -jar adrastea.jar
+
+I will be witting some scripts later to start up this bot as a service to allow
+it to run independently after startup.
+
+===============================================================================

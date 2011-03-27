@@ -13,19 +13,22 @@ public class Adrastea {
 	 * Main
 	 */
 	public static void main(String[] args) {
+		System.out.println("Starting up Adrastea IRC Bot");
+
 		// Declare our IRC environment vars
 		IrcConnection irc = new IrcConnection(); // Connection object
 		IrcMessage message; // Stores the message per tick
 
+		System.out.println("Loading configuration file");
 		// Load all our config stuffs
 		try {
-			IrcConfig.load("C:\\java\\adrastea\\config.txt");
+			IrcConfig.load("config.txt");
 		}
 		catch(Exception e) {
-			System.out.println("Unable to load configuration file");
+			System.out.println("[ERROR] Unable to load configuration file.");
 			return;
 		}
-	
+
 		// Connection loop
 		while(true) {
 			try {
@@ -34,29 +37,29 @@ public class Adrastea {
 				irc.connect(IrcConfig.host, IrcConfig.port);
 
 				// Receive message loop
-				while(true)
-				{
+				while(true) {
 					message = new IrcMessage(irc.recv());
 					System.out.println(message.raw);
 
-					if (false)
-					{
+					// This will eventually check a flag to see if an exit
+					// command has been given
+					if (false) {
 						throw new IrcExitException();
 					}
 				}
 			}
 			catch(IrcNullMessageException e) {
-				System.out.println("Network Error, reconnecting...");
+				System.out.println("\n[ERROR] Network Error, reconnecting...");
 			}
 			catch(IrcFailedConnectException e) {
-				System.out.println("Failed to connect, retrying...");
+				System.out.println("\n[ERROR] Failed to connect, retrying...");
 			}
 			catch(IrcExitException e) {
-				System.out.println("System Shutdown...");
+				System.out.println("\nSystem Shutdown.");
 				return;
 			}
 			catch(Exception e) {
-				System.out.println("Unknown Error, reconnecting...");
+				System.out.println("[ERROR] Unknown Error, reconnecting...");
 			}
 		}
 	}

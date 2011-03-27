@@ -10,3 +10,6 @@ nick: Adrastea
 pass: mypassword
 name: Adrastea IRC Bot
 user: me
+
+channels: #openflame
+passphrase: my5ekretW0rd
