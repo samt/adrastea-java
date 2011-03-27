@@ -15,11 +15,21 @@ public class Adrastea {
 		IrcConnection irc = new IrcConnection(); // Connection object
 		IrcMessage message; // Stores the message per tick
 		
+		// Load all our config stuffs
+		try {
+			IrcConfig.load("C:\\java\\adrastea\\config.txt");
+		}
+		catch(Exception e) {
+			System.out.println("Unable to load configuration file");
+			return;
+		}
+	
 		// Connection loop
 		while(true) {
 			try {
 				// let us connect
-				irc.connect("irc.freenode.net");
+				System.out.println("Connecting to " + IrcConfig.host + ":" + IrcConfig.port + "...");
+				irc.connect(IrcConfig.host, IrcConfig.port);
 
 				// Receive message loop
 				while(true)

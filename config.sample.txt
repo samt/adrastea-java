@@ -1,0 +1,12 @@
+#
+# Adrastea IRC Bot Configuration (Sample)
+#
+# You may use any configuration format that the Java Properties parser 
+# will accept.
+#
+host: irc.freenode.net
+port: 6667
+nick: Adrastea
+pass: mypassword
+name: Adrastea IRC Bot
+user: me
