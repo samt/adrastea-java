@@ -7,6 +7,9 @@
  */
 
 public class IrcMessage {
+	/*
+	 * All the pieces to the message
+	 */
 	public String raw		= "";
 	public String prefix	= "";
 	public String type		= "";
