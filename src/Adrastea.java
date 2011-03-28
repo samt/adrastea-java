@@ -35,6 +35,10 @@ public class Adrastea {
 				// let us connect
 				System.out.println("Connecting to " + IrcConfig.host + ":" + IrcConfig.port + "...");
 				irc.connect(IrcConfig.host, IrcConfig.port);
+				
+				// Send our nickname and user
+				irc.sendRaw("NICK " + IrcConfig.nick);
+				irc.sendRaw("USER " + IrcConfig.user + " 8 * :" + IrcConfig.name);
 
 				// Receive message loop
 				while(true) {
