@@ -20,6 +20,8 @@ public class IrcConfig {
 	public static String user;
 	public static String channels;
 	public static String passphrase;
+	public static String partmsg;
+	public static String quitmsg;
 
 	public static void load(String filename) throws Exception {
 		Properties cfg = new Properties();
@@ -35,5 +37,8 @@ public class IrcConfig {
 
 		IrcConfig.channels = cfg.getProperty("channels");
 		IrcConfig.passphrase = cfg.getProperty("passphrase");
+
+		IrcConfig.partmsg = cfg.getProperty("partmsg");
+		IrcConfig.quitmsg = cfg.getProperty("quitmsg");
 	}
 }

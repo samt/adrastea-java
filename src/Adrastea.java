@@ -26,7 +26,7 @@ public class Adrastea {
 		}
 		catch(Exception e) {
 			System.out.println("[ERROR] Unable to load configuration file.");
-			return;
+			System.exit(0);
 		}
 
 		// Connection loop
@@ -45,6 +45,20 @@ public class Adrastea {
 					message = new IrcMessage(irc.recv());
 					System.out.println(message.raw);
 
+					// temp
+					if(message.type.equals("PING"))
+					{
+						irc.sendRaw("PONG :" + message.message);
+						System.out.println("PONG :" + message.message);
+						continue;
+					}
+					else if(message.type.equals("376"))
+					{
+						irc.sendRaw("JOIN " + IrcConfig.channels);
+						System.out.println("JOIN " + IrcConfig.channels);
+						continue;
+					}
+
 					// This will eventually check a flag to see if an exit
 					// command has been given
 					if (false) {
@@ -60,7 +74,7 @@ public class Adrastea {
 			}
 			catch(IrcExitException e) {
 				System.out.println("\nSystem Shutdown.");
-				return;
+				System.exit(0);
 			}
 			catch(Exception e) {
 				System.out.println("[ERROR] Unknown Error, reconnecting...");
