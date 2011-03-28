@@ -18,6 +18,8 @@ public class IrcConfig {
 	public static String pass;
 	public static String name;
 	public static String user;
+	public static String channels;
+	public static String passphrase;
 
 	public static void load(String filename) throws Exception {
 		Properties cfg = new Properties();
@@ -30,5 +32,8 @@ public class IrcConfig {
 		IrcConfig.pass = cfg.getProperty("pass");
 		IrcConfig.name = cfg.getProperty("name");
 		IrcConfig.user = cfg.getProperty("user");
+
+		IrcConfig.channels = cfg.getProperty("channels");
+		IrcConfig.passphrase = cfg.getProperty("passphrase");
 	}
 }
