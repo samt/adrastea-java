@@ -13,3 +13,7 @@ user: me
 
 channels: #openflame
 passphrase: my5ekretW0rd
+
+# Place to put the logs. Can be relative to the .jar's position
+# MUST be a directory
+logfilepath: /var/irclogs/
