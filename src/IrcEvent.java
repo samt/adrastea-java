@@ -23,8 +23,8 @@ public class IrcEvent {
 	 */
 	public IrcEvent(IrcMessage m) {
 		if (m.type.equals("PRIVMSG")) {
-			this.location = (m.target.startsWith("#")) ? 'channel' : 'user';
-			this.type = (m.ctcp.length() > 0) ? 'ctcp' : 'message';
+			this.location = (m.target.startsWith("#")) ? "channel" : "user";
+			this.type = (m.ctcp.length() > 0) ? "ctcp" : "message";
 		}
 		else if (m.type.equals("JOIN") || m.type.equals("PART") || m.type.equals("KICK") || m.type.equals("NICK") || m.type.equals("QUIT")) {
 			this.location = "channel";

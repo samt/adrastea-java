@@ -19,17 +19,17 @@ public class IrcListener {
 	 * @param String parts
 	 */
 	public IrcListener(String e) {
-		String[] parts = e.split('.');
+		String[] parts = e.split(".");
 
-		if (parts.length() >= 1) {
+		if (parts.length >= 1) {
 			this.location = parts[0];
 		}
 
-		if (parts.length() >= 2) {
+		if (parts.length >= 2) {
 			this.type = parts[1];
 		}
 
-		if (parts.length() >= 3) {
+		if (parts.length >= 3) {
 			this.event = parts[2];
 		}
 	}
