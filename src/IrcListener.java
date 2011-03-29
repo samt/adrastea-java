@@ -9,4 +9,28 @@
 package adrastea;
 
 public class IrcListener {
+	public String location = "";
+	public String type = "";
+	public String event = "";
+
+	/*
+	 * Constructor - set the event type
+	 *
+	 * @param String parts
+	 */
+	public IrcListener(String e) {
+		String[] parts = e.split('.');
+
+		if (parts.length() >= 1) {
+			this.location = parts[0];
+		}
+
+		if (parts.length() >= 2) {
+			this.type = parts[1];
+		}
+
+		if (parts.length() >= 3) {
+			this.event = parts[2];
+		}
+	}
 }
