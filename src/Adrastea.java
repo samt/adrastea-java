@@ -44,8 +44,7 @@ public class Adrastea {
 		// Join Channels after MOTD (376)
 		event.register(new IrcListener("system.376").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
-			//	System.out.println("HI!!!!!");
-				return null;
+				return new String[] {"JOIN " +  IrcConfig.channels};
 			}
 		}));
 

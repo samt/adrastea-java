@@ -21,6 +21,8 @@ public class IrcEventHandler {
 	}
 
 	public IrcEventHandler run(IrcEvent e) {
+		msgQueue = new ArrayList();
+		this.cntr = -1;
 		int size = this.listeners.size();
 		IrcListener lstnr;
 		String queueBuffer[];
@@ -35,7 +37,6 @@ public class IrcEventHandler {
 			{
 				try {
 					queueBuffer = lstnr.o.run(e.msg);
-
 					for(int j = 0; j < queueBuffer.length; j++) {
 						msgQueue.add(queueBuffer[j]);
 					}
