@@ -12,9 +12,9 @@ public class IrcEvent {
 	/*
 	 * Breaking up the event into 3 pieces
 	 */
-	public String location = "";
-	public String type = "";
-	public String event = "";
+	public String location	= "";
+	public String type		= "";
+	public String event		= "";
 
 	public IrcMessage msg;
 

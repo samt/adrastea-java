@@ -44,7 +44,7 @@ public class Adrastea {
 		// Join Channels after MOTD (376)
 		event.register(new IrcListener("system.376").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
-				System.out.println("HI!!!!!");
+			//	System.out.println("HI!!!!!");
 				return null;
 			}
 		}));
@@ -71,18 +71,6 @@ public class Adrastea {
 						irc.sendRaw(outBuffer);
 						System.out.println(outBuffer);
 					}
-
-					// temp
-				/*	if(message.type.equals("PING")) {
-						irc.sendRaw("PONG :" + message.message);
-						System.out.println("PONG :" + message.message);
-						continue;
-					}
-					else if(message.type.equals("376")) {
-						irc.sendRaw("JOIN " + IrcConfig.channels);
-						System.out.println("JOIN " + IrcConfig.channels);
-						continue;
-					}*/
 
 					// This will eventually check a flag to see if an exit
 					// command has been given

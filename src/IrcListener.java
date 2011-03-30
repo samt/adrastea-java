@@ -11,9 +11,9 @@ package adrastea;
 public class IrcListener {
 	public IrcListenerInterface o;
 
-	public String location = "";
-	public String type = "";
-	public String event = "";
+	public String location	= "";
+	public String type		= "";
+	public String event		= "";
 
 	/*
 	 * Constructor - set the event type
@@ -21,8 +21,7 @@ public class IrcListener {
 	 * @param String parts
 	 */
 	public IrcListener(String e) {
-		String[] parts = e.split(".");
-
+		String[] parts = e.split("\\.");
 		if (parts.length >= 1) {
 			this.location = parts[0];
 		}

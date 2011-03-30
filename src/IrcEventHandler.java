@@ -29,14 +29,18 @@ public class IrcEventHandler {
 			lstnr = (IrcListener) this.listeners.get(i);
 
 			if( (e.location.equals(lstnr.location) || lstnr.location.equals("*")) &&
-				(e.type.equals(lstnr.type) || lstnr.type.equals("*")) && 
-				(e.event.equals(lstnr.event) || lstnr.event.equals("*"))
+				(e.type.equals(lstnr.type) || lstnr.type.equals("*")) /*&& 
+				(e.event.equals(lstnr.event) || lstnr.event.equals("*"))*/
 			)
 			{
-				queueBuffer = lstnr.o.run(e.msg);
-				
-				for(int j = 0; j < queueBuffer.length; j++) {
-					msgQueue.add(queueBuffer[j]);
+				try {
+					queueBuffer = lstnr.o.run(e.msg);
+
+					for(int j = 0; j < queueBuffer.length; j++) {
+						msgQueue.add(queueBuffer[j]);
+					}
+				}
+				catch(NullPointerException exptn) {
 				}
 			}
 		}
