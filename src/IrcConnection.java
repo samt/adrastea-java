@@ -131,4 +131,15 @@ public class IrcConnection {
 	public IrcConnection sendCtcp(String target, String query, String message) throws Exception {
 		return this.sendCtcp(target, query + " " + message);
 	}
+
+	/*
+	 * Close the socket
+	 */
+	public void close() {
+		try {
+			this.sock.close();
+		}
+		catch(Exception e) {
+		}
+	}
 }

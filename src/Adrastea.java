@@ -44,7 +44,16 @@ public class Adrastea {
 		// Join Channels after MOTD (376)
 		event.register(new IrcListener("system.376").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
-				return new String[] {"JOIN " +  IrcConfig.channels};
+				return new String[] { 
+					"JOIN " +  IrcConfig.channels
+				};
+			}
+		}));
+
+		// Send login
+		event.register(new IrcListener("system.notice").handler(new IrcListenerInterface () {
+			public String[] run(IrcMessage m) {
+				return (m.message.startsWith("This nickname is registered")) ? new String[] {"PRIVMSG NickServ :IDENTIFY " + IrcConfig.pass} : null;
 			}
 		}));
 
@@ -52,6 +61,16 @@ public class Adrastea {
 		event.register(new IrcListener("user.ctcp.version").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
 				return new String[] {"PRIVMSG " +  m.nick + " :\001CLIENT Adrastea:v2.0.0:JavaSE_1.6\001"};
+			}
+		}));
+
+		// Exit
+		event.register(new IrcListener("user.message").handler(new IrcListenerInterface () {
+			public String[] run(IrcMessage m) {
+				if (m.message.equals(IrcConfig.passphrase + " shutdown")) {
+					IrcGlobals.exit = true;
+				}
+				return null;
 			}
 		}));
 
@@ -80,7 +99,9 @@ public class Adrastea {
 
 					// This will eventually check a flag to see if an exit
 					// command has been given
-					if (false) {
+					if (IrcGlobals.exit) {
+						irc.sendRaw("QUIT :" + IrcConfig.quitmsg);
+						System.out.println("QUIT :" + IrcConfig.quitmsg);
 						throw new IrcExitException();
 					}
 				}
@@ -93,6 +114,7 @@ public class Adrastea {
 			}
 			catch(IrcExitException e) {
 				System.out.println("\nSystem Shutdown.");
+				irc.close();
 				System.exit(0);
 			}
 			catch(Exception e) {

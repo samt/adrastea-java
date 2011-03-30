@@ -37,6 +37,7 @@ public class IrcEventHandler {
 			{
 				try {
 					queueBuffer = lstnr.o.run(e.msg);
+
 					for(int j = 0; j < queueBuffer.length; j++) {
 						msgQueue.add(queueBuffer[j]);
 					}
