@@ -49,10 +49,10 @@ public class IrcMessage {
 		}
 		else if (msg.indexOf(':') > 0) {
 			this.target = msg.substring(0, msg.indexOf(':')).trim();
-			this.message = msg.substring(msg.indexOf(':') + 1).trim();
+			this.message = msg.substring(msg.indexOf(':') + 1);
 		}
 		else {
-			this.message = msg.substring(1).trim();
+			this.message = msg.substring(1);
 		}
 
 		// Now we need to extract items such as the nickname and vhost
@@ -62,9 +62,11 @@ public class IrcMessage {
 		}
 
 		// Lastly, get any CTCP information
-		if (this.message.startsWith("\001") && this.message.endsWith("\001")) {
-			this.ctcp = this.message.contains(" ") ? this.message.substring(1, this.message.indexOf(' ')).trim() : this.message.substring(1, this.message.lastIndexOf('\001')).trim();
+		if (this.message.startsWith("\001")) {
+			this.ctcp = this.message.contains(" ") ? this.message.substring(1, this.message.indexOf(' ')).trim().toLowerCase() : this.message.substring(1).toLowerCase();;
 			this.ctcpArg = (this.message.indexOf(' ') > 0) ? this.message.substring(this.message.indexOf(' ')).trim() : "";
+			
+			this.ctcp.toLowerCase();
 		}
 	}
 }

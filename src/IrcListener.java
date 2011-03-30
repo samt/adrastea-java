@@ -11,9 +11,9 @@ package adrastea;
 public class IrcListener {
 	public IrcListenerInterface o;
 
-	public String location	= "";
-	public String type		= "";
-	public String event		= "";
+	public String location	= "*";
+	public String type		= "*";
+	public String event		= "*";
 
 	/*
 	 * Constructor - set the event type

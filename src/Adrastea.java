@@ -48,6 +48,13 @@ public class Adrastea {
 			}
 		}));
 
+		// Respond to VERSION
+		event.register(new IrcListener("user.ctcp.version").handler(new IrcListenerInterface () {
+			public String[] run(IrcMessage m) {
+				return new String[] {"PRIVMSG " +  m.nick + " :\001CLIENT Adrastea:v2.0.0:JavaSE_1.6\001"};
+			}
+		}));
+
 		// Connection loop
 		while(true) {
 			try {

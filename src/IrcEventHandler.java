@@ -31,8 +31,8 @@ public class IrcEventHandler {
 			lstnr = (IrcListener) this.listeners.get(i);
 
 			if( (e.location.equals(lstnr.location) || lstnr.location.equals("*")) &&
-				(e.type.equals(lstnr.type) || lstnr.type.equals("*")) /*&& 
-				(e.event.equals(lstnr.event) || lstnr.event.equals("*"))*/
+				(e.type.equals(lstnr.type) || lstnr.type.equals("*")) && 
+				(e.event.equals(lstnr.event) || lstnr.event.equals("*"))
 			)
 			{
 				try {
