@@ -9,6 +9,8 @@
 package adrastea;
 
 public class IrcListener {
+	private Object o;
+
 	public String location = "";
 	public String type = "";
 	public String event = "";
@@ -32,5 +34,10 @@ public class IrcListener {
 		if (parts.length >= 3) {
 			this.event = parts[2];
 		}
+	}
+
+	public IrcListener handler(Object obj) {
+		this.o = obj;
+		return this;
 	}
 }

@@ -16,12 +16,16 @@ public class IrcEvent {
 	public String type = "";
 	public String event = "";
 
+	public IrcMessage msg;
+
 	/*
 	 * Event
 	 *
 	 * @param IrcMessage message
 	 */
 	public IrcEvent(IrcMessage m) {
+		this.msg = m;
+	
 		if (m.type.equals("PRIVMSG")) {
 			this.location = (m.target.startsWith("#")) ? "channel" : "user";
 			this.type = (m.ctcp.length() > 0) ? "ctcp" : "message";

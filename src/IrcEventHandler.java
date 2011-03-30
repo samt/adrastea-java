@@ -8,5 +8,23 @@
 
 package adrastea;
 
+import java.util.ArrayList;
+
 public class IrcEventHandler {
+	private ArrayList events = new ArrayList();
+	private ArrayList msgQueue = new ArrayList();
+
+	public IrcEventHandler register(IrcListener lstnr) {
+		events.add(lstnr);
+		return this;
+	}
+
+	public IrcEventHandler run(IrcEvent e) {
+		// give e.msg to the callback
+		return this;
+	}
+
+	public String queue() {
+		return null;
+	}
 }

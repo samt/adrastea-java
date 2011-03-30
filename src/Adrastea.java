@@ -18,6 +18,8 @@ public class Adrastea {
 		// Declare our IRC environment vars
 		IrcConnection irc = new IrcConnection(); // Connection object
 		IrcMessage message; // Stores the message per tick
+		IrcEventHandler event = new IrcEventHandler();
+		String outBuffer;
 
 		System.out.println("Loading configuration file");
 		// Load all our config stuffs
@@ -28,6 +30,23 @@ public class Adrastea {
 			System.out.println("[ERROR] Unable to load configuration file.");
 			System.exit(0);
 		}
+		
+		System.out.println("Setting listeners");
+
+		// Add all listeners
+		// PING
+		event.register(new IrcListener("system.ping").handler(new Object () {
+			public String[] run(IrcMessage m) {
+				return new String[] {"PONG :" + m.message};
+			}
+		}));
+
+		// Join Channels after MOTD (376)
+		event.register(new IrcListener("system.376").handler(new Object() {
+			public String[] run(IrcMessage m) {
+				return null;
+			}
+		}));
 
 		// Connection loop
 		while(true) {
@@ -43,17 +62,22 @@ public class Adrastea {
 				// Receive message loop
 				while(true) {
 					message = new IrcMessage(irc.recv());
+					event.run(new IrcEvent(message));
+
 					System.out.println(message.raw);
 
+					while((outBuffer = event.queue()) != null) {
+						irc.sendRaw(message.raw);
+						System.out.println(message.raw);
+					}
+
 					// temp
-					if(message.type.equals("PING"))
-					{
+					if(message.type.equals("PING")) {
 						irc.sendRaw("PONG :" + message.message);
 						System.out.println("PONG :" + message.message);
 						continue;
 					}
-					else if(message.type.equals("376"))
-					{
+					else if(message.type.equals("376")) {
 						irc.sendRaw("JOIN " + IrcConfig.channels);
 						System.out.println("JOIN " + IrcConfig.channels);
 						continue;
