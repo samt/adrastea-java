@@ -9,7 +9,7 @@
 package adrastea;
 
 public class IrcListener {
-	private Object o;
+	public IrcListenerInterface o;
 
 	public String location = "";
 	public String type = "";
@@ -36,7 +36,7 @@ public class IrcListener {
 		}
 	}
 
-	public IrcListener handler(Object obj) {
+	public IrcListener handler(IrcListenerInterface obj) {
 		this.o = obj;
 		return this;
 	}

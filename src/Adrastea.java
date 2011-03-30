@@ -35,15 +35,16 @@ public class Adrastea {
 
 		// Add all listeners
 		// PING
-		event.register(new IrcListener("system.ping").handler(new Object () {
+		event.register(new IrcListener("system.ping").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
 				return new String[] {"PONG :" + m.message};
 			}
 		}));
 
 		// Join Channels after MOTD (376)
-		event.register(new IrcListener("system.376").handler(new Object() {
+		event.register(new IrcListener("system.376").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
+				System.out.println("HI!!!!!");
 				return null;
 			}
 		}));
@@ -67,12 +68,12 @@ public class Adrastea {
 					System.out.println(message.raw);
 
 					while((outBuffer = event.queue()) != null) {
-						irc.sendRaw(message.raw);
-						System.out.println(message.raw);
+						irc.sendRaw(outBuffer);
+						System.out.println(outBuffer);
 					}
 
 					// temp
-					if(message.type.equals("PING")) {
+				/*	if(message.type.equals("PING")) {
 						irc.sendRaw("PONG :" + message.message);
 						System.out.println("PONG :" + message.message);
 						continue;
@@ -81,7 +82,7 @@ public class Adrastea {
 						irc.sendRaw("JOIN " + IrcConfig.channels);
 						System.out.println("JOIN " + IrcConfig.channels);
 						continue;
-					}
+					}*/
 
 					// This will eventually check a flag to see if an exit
 					// command has been given
