@@ -34,7 +34,7 @@ public class IrcEvent {
 				this.event = m.ctcp;
 			}
 		}
-		else if (m.type.equals("JOIN") || m.type.equals("PART") || m.type.equals("KICK") || m.type.equals("NICK") || m.type.equals("QUIT")) {
+		else if (m.type.equals("JOIN") || m.type.equals("PART") || m.type.equals("KICK") || m.type.equals("NICK") || m.type.equals("QUIT") || m.type.equals("INVITE")) {
 			this.location = "channel";
 			this.type = "event";
 			this.event = m.type.toLowerCase();

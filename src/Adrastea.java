@@ -60,16 +60,42 @@ public class Adrastea {
 		// Respond to VERSION
 		event.register(new IrcListener("user.ctcp.version").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
-				return new String[] {"PRIVMSG " +  m.nick + " :\001CLIENT Adrastea:v2.0.0:JavaSE_1.6\001"};
+				return new String[] {"PRIVMSG " +  m.nick + " :\001CLIENT Adrastea v2.0.0 JavaSE_1.6\001"};
 			}
 		}));
 
 		// Exit
 		event.register(new IrcListener("user.message").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
-				if (m.message.equals(IrcConfig.passphrase + " shutdown")) {
+				if(m.vhost.equals(IrcGlobals.commander) && m.message.equals("shutdown")) {
 					IrcGlobals.exit = true;
 				}
+				return null;
+			}
+		}));
+		
+		event.register(new IrcListener("user.message").handler(new IrcListenerInterface () {
+			public String[] run(IrcMessage m) {
+				if (m.message.toLowerCase().startsWith("identify ")) {
+					if(m.message.substring(m.message.indexOf(" ") + 1).equals(IrcConfig.passphrase)) {
+						IrcGlobals.commander = m.vhost;
+						return new String[] {"PRIVMSG " + m.nick + " :Your wish is now my command"};
+					}
+					else {
+						return new String[] {"PRIVMSG " + m.nick + " :Improper credentials supplied"};
+					}
+				}
+
+				return null;
+			}
+		}));
+
+		event.register(new IrcListener("channel.invite").handler(new IrcListenerInterface () {
+			public String[] run(IrcMessage m) {
+				if (m.vhost.equals(IrcGlobals.commander)) {
+					return new String[] {"JOIN " + m.message};
+				}
+
 				return null;
 			}
 		}));

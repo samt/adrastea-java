@@ -10,4 +10,5 @@ package adrastea;
 
 public class IrcGlobals {
 	public static boolean exit = false;
+	public static String commander = "";
 }
