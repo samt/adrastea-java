@@ -41,12 +41,10 @@ public class Adrastea {
 			}
 		}));
 
-		// Join Channels after MOTD (376)
-		event.register(new IrcListener("system.376").handler(new IrcListenerInterface () {
+		// Join Channels after identifing
+		event.register(new IrcListener("system.notice").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
-				return new String[] { 
-					"JOIN " +  IrcConfig.channels
-				};
+				return (m.message.startsWith("You are now identified for")) ? new String[] {"JOIN " +  IrcConfig.channels} : null;
 			}
 		}));
 
@@ -73,7 +71,8 @@ public class Adrastea {
 				return null;
 			}
 		}));
-		
+
+		// Identify 
 		event.register(new IrcListener("user.message").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
 				if (m.message.toLowerCase().startsWith("identify ")) {
@@ -90,7 +89,7 @@ public class Adrastea {
 			}
 		}));
 
-		event.register(new IrcListener("channel.invite").handler(new IrcListenerInterface () {
+		event.register(new IrcListener("channel.event.invite").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
 				if (m.vhost.equals(IrcGlobals.commander)) {
 					return new String[] {"JOIN " + m.message};
