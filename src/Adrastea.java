@@ -102,6 +102,26 @@ public class Adrastea {
 			}
 		}));
 
+		// Puppet
+		event.register(new IrcListener("user.message").handler(new IrcListenerInterface () {
+			public String[] run(IrcMessage m) {
+				if(m.vhost.equals(IrcGlobals.commander) && m.message.startsWith("say ")) {
+					String pieces = m.message.substring(m.message.indexOf(" ") + 1);
+					String target = (pieces.indexOf(" ") > 0) ? pieces.substring(0, pieces.indexOf(" ") + 1) : "";
+					String message = (pieces.indexOf(" ") > 0) ? pieces.substring(pieces.indexOf(" ") + 1) : "";
+
+					if(target.length() > 0 && message.length() > 0) {
+						IrcGlobals.commander = m.vhost;
+						return new String[] {"PRIVMSG " + target + " :" + message};
+					}
+					else {
+						return new String[] {"PRIVMSG " + m.nick + " :Invalid say command"};
+					}
+				}
+				return null;
+			}
+		}));
+
 		// Logger
 		event.register(new IrcListener("channel.*.*").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
