@@ -33,6 +33,10 @@ public class Adrastea {
 		
 		System.out.println("Setting listeners");
 
+		/**********************************************************************
+		                            START LISTENERS
+		**********************************************************************/
+
 		// Add all listeners
 		// PING
 		event.register(new IrcListener("system.ping").handler(new IrcListenerInterface () {
@@ -84,20 +88,30 @@ public class Adrastea {
 						return new String[] {"PRIVMSG " + m.nick + " :Improper credentials supplied"};
 					}
 				}
-
 				return null;
 			}
 		}));
 
+		// Channel invites
 		event.register(new IrcListener("channel.event.invite").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
 				if (m.vhost.equals(IrcGlobals.commander)) {
 					return new String[] {"JOIN " + m.message};
 				}
-
 				return null;
 			}
 		}));
+
+		// Logger
+		event.register(new IrcListener("channel.*.*").handler(new IrcListenerInterface () {
+			public String[] run(IrcMessage m) {
+				return null;
+			}
+		}));
+
+		/**********************************************************************
+		                            END LISTENERS
+		**********************************************************************/
 
 		// Connection loop
 		while(true) {
