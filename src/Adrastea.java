@@ -102,6 +102,19 @@ public class Adrastea {
 			}
 		}));
 
+		// Backup joining
+		event.register(new IrcListener("user.message").handler(new IrcListenerInterface () {
+			public String[] run(IrcMessage m) {
+				if (m.vhost.equals(IrcGlobals.commander) 
+					&& m.message.toLowerCase().startsWith("join ") 
+					&& m.message.indexOf(" ") > 0 
+					&& m.message.substring(m.message.indexOf(" ") + 1).startsWith("#") {
+					return new String[] {"JOIN " + m.message.substring(m.message.indexOf(" ") + 1)};
+				}
+				return null;
+			}
+		}));
+
 		// Puppet
 		event.register(new IrcListener("user.message").handler(new IrcListenerInterface () {
 			public String[] run(IrcMessage m) {
